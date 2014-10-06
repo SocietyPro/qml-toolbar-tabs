@@ -37,6 +37,28 @@ QuickControls.ApplicationWindow {
         id: rootItem
         anchors.fill: parent
 
+        signal viewAllNotificationsClicked()
+        signal clearAllNotificationsClicked()
+        signal notificationItemAcceptClicked(int index, bool yes) //false means decline
+        signal notificationItemRemoveClicked(int index)
+
+        signal viewAllPeerRequestsClicked()
+        signal clearAllPeerRequestsClicked()
+        signal peerItemConfirmClicked(int index, bool yes) //false means "not now"
+
+        signal viewAllMessagesClicked()
+        signal clearAllMessagesClicked()
+        signal messageItemRemoveClicked(int index)
+
+        signal applicationsMoreButtonClicked()
+        signal roleMenuItemClicked(int index)
+        signal creationStackMenuItemClicked(int index)
+        signal pantheonMenuItemClicked(int index)
+        signal moreMenuItemClicked(int index)
+        signal moreSubMenuItemClicked(int index, bool checked) //you don't have to use checked
+        //arg if it's not necessary. Value of checked arg is not defined if menuitem has no
+        //visible checkbox
+
         Rectangle {
             anchors.left: parent.left
             anchors.right: parent.right

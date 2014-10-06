@@ -137,6 +137,7 @@ Item {
                         anchors.fill: parent
                         hoverEnabled: true
                         onClicked: {
+                            rootItem.roleMenuItemClicked(index)
                             dropdown.roleChanged(name)
                             dropdown.expanded = false
                         }

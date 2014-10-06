@@ -7,8 +7,6 @@ ToolButton {
 
     signal notNowClicked(int index)
     signal confirmClicked(int index)
-    signal viewAllPeerRequestsClicked()
-    signal clearAllPeerRequestsClicked()
     property bool expanded: false
     onExpandedChanged: if(expanded) appWindow.currentItem = dropdown
     function hide() {
@@ -171,7 +169,7 @@ ToolButton {
 
                         MouseArea {
                             anchors.fill: parent
-                            onClicked: dropdown.notNowClicked(index)
+                            onClicked: rootItem.peerItemConfirmClicked(index, false)
                         }
                     }
 
@@ -188,7 +186,7 @@ ToolButton {
 
                         MouseArea {
                             anchors.fill: parent
-                            onClicked: dropdown.confirmClicked(index)
+                            onClicked: rootItem.peerItemConfirmClicked(index, true)
                         }
                     }
                 }
@@ -220,7 +218,7 @@ ToolButton {
                         id: magArea
                         anchors.fill: parent
                         hoverEnabled: true
-                        onClicked: dropdown.viewAllPeerRequestsClicked()
+                        onClicked: rootItem.viewAllPeerRequestsClicked()
                     }
                 }
 
@@ -236,7 +234,7 @@ ToolButton {
                         id: clearArea
                         anchors.fill: parent
                         hoverEnabled: true
-                        onClicked: dropdown.clearAllPeerRequestsClicked()
+                        onClicked: rootItem.clearAllPeerRequestsClicked()
                     }
                 }
             }

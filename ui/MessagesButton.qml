@@ -5,9 +5,6 @@ ToolButton {
     id: dropdown
     counter: listView.count < 99 ? listView.count : 99
 
-    signal removeRecentClicked(int index)
-    signal viewAllMessagesClicked()
-    signal clearAllMessagesClicked()
     property bool expanded: false
     onExpandedChanged: if(expanded) appWindow.currentItem = dropdown
     function hide() {
@@ -142,7 +139,7 @@ ToolButton {
                         id: iconArea
                         anchors.fill: parent
                         hoverEnabled: true
-                        onClicked: dropdown.removeRecentClicked(index)
+                        onClicked: rootItem.messageItemRemoveClicked(index)
                     }
                 }
 
@@ -215,7 +212,7 @@ ToolButton {
                         id: magArea
                         anchors.fill: parent
                         hoverEnabled: true
-                        onClicked: dropdown.viewAllMessagesClicked()
+                        onClicked: rootItem.viewAllMessagesClicked()
                     }
                 }
 
@@ -231,7 +228,7 @@ ToolButton {
                         id: clearArea
                         anchors.fill: parent
                         hoverEnabled: true
-                        onClicked: dropdown.clearAllMessagesClicked()
+                        onClicked: rootItem.clearAllMessagesClicked()
                     }
                 }
             }

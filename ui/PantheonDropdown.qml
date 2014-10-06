@@ -135,6 +135,7 @@ Item {
                         anchors.fill: parent
                         hoverEnabled: true
                         onClicked: {
+                            rootItem.pantheonMenuItemClicked(index)
                             dropdown.expanded = false
                         }
                     }

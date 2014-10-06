@@ -5,11 +5,6 @@ ToolButton {
     id: dropdown
     counter: listView.count <= 99 ? listView.count : 99
 
-    signal removeRecentClicked(int index)
-    signal acceptClicked(int index)
-    signal declineClicked(int index)
-    signal viewAllNotificationsClicked()
-    signal clearAllNotificationsClicked()
     property bool expanded: false
     onExpandedChanged: if(expanded) appWindow.currentItem = dropdown
     function hide() {
@@ -142,7 +137,7 @@ ToolButton {
                         id: iconArea
                         anchors.fill: parent
                         hoverEnabled: true
-                        onClicked: dropdown.removeRecentClicked(index)
+                        onClicked: rootItem.notificationItemRemoveClicked(index)
                     }
                 }
 
@@ -207,7 +202,7 @@ ToolButton {
 
                         MouseArea {
                             anchors.fill: parent
-                            onClicked: dropdown.declineClicked(index)
+                            onClicked: rootItem.notificationItemAcceptClicked(index, false)
                         }
                     }
 
@@ -224,7 +219,7 @@ ToolButton {
 
                         MouseArea {
                             anchors.fill: parent
-                            onClicked: dropdown.acceptClicked(index)
+                            onClicked: rootItem.notificationItemAcceptClicked(index, true)
                         }
                     }
                 }
@@ -256,7 +251,7 @@ ToolButton {
                         id: magArea
                         anchors.fill: parent
                         hoverEnabled: true
-                        onClicked: dropdown.viewAllNotificationsClicked()
+                        onClicked: rootItem.viewAllNotificationsClicked()
                     }
                 }
 
@@ -272,7 +267,7 @@ ToolButton {
                         id: clearArea
                         anchors.fill: parent
                         hoverEnabled: true
-                        onClicked: dropdown.clearAllNotificationsClicked()
+                        onClicked: rootItem.clearAllNotificationsClicked()
                     }
                 }
             }

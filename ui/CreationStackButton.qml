@@ -134,6 +134,7 @@ ToolButton {
                         anchors.fill: parent
                         hoverEnabled: true
                         onClicked: {
+                            rootItem.creationStackMenuItemClicked(index)
                             dropdown.expanded = false
                         }
                     }

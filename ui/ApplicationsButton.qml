@@ -159,6 +159,7 @@ ToolButton {
                 id: moreArea
                 anchors.fill: parent
                 hoverEnabled: true
+                onClicked: rootItem.applicationsMoreButtonClicked()
             }
         }
     }

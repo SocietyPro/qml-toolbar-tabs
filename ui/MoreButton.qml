@@ -3,10 +3,6 @@ import QtGraphicalEffects 1.0
 
 ToolButton {
     id: dropdown
-    signal menuItemClicked(int index)
-    signal subMenuItemClicked(int index, bool checked) //you don't have to use checked
-    //arg if it's not necessary. Value of checked arg is not defined if menuitem has no
-    //visible checkbox
 
     property bool expanded: false
     onExpandedChanged: if(expanded) appWindow.currentItem = dropdown
@@ -146,7 +142,7 @@ ToolButton {
                                 timer.stop()
                                 subPopupRoot.visible = true
                             } else {
-                                dropdown.menuItemClicked(index)
+                                rootItem.moreMenuItemClicked(index)
                                 dropdown.hide()
                             }
                         }
@@ -257,7 +253,7 @@ ToolButton {
                             hoverEnabled: true
                             onClicked: {
                                 checkItem.checked = !checkItem.checked
-                                dropdown.subMenuItemClicked(index, checkItem.checked)
+                                rootItem.moreSubMenuItemClicked(index, checkItem.checked)
                                 if(!hasCheckBox)
                                     dropdown.hide()
                             }
