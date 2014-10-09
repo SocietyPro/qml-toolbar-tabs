@@ -2,6 +2,7 @@
     <qresource prefix="/">
         <file>ui/main.qml</file>
         <file>ui/Tab.qml</file>
+        <file>ui/ToolBar.qml</file>
     </qresource>
     <qresource prefix="/components">
         <file>ui/TabViewHeader.qml</file>

@@ -81,7 +81,7 @@ QuickControls.ApplicationWindow {
         PantheonDropdown {
             anchors.left: parent.left
             anchors.top: parent.top
-            height: 25; width: 100; z: 1
+            height: 25; width: 100; z: 2
         }
 
         ListModel { id: tabsModel }
@@ -100,11 +100,25 @@ QuickControls.ApplicationWindow {
                     if(tabsModel.get(i).identifier === identifier) {
                         rootItem.currentTab = prevIdentifier
                         tabsModel.remove(i)
-                        break
+                        return
                     }
             }
         }
 
+        ToolBar {
+            id: toolBar
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.top: tabViewHeader.bottom
+            z: 1
+
+            onUrlChanged: rootItem.currentWebView.url = url
+            onGoBackClicked: rootItem.currentWebView.goBack()
+            onGoForwardClicked: rootItem.currentWebView.goForward()
+            onReloadClicked: rootItem.currentWebView.reload()
+        }
+
+        property var currentWebView: undefined
         property int currentTab: 0
         Repeater {
             id: repeater
@@ -112,10 +126,22 @@ QuickControls.ApplicationWindow {
             delegate: Tab {
                 width: rootItem.width
                 height: rootItem.height - tabViewHeader.height
-                y: tabViewHeader.height
+                y: toolBar.y + toolBar.height
                 visible: identifier === rootItem.currentTab
                 onPageModified: tabViewHeader.modifyTab(identifier, url, title)
-                Component.onCompleted: rootItem.currentTab = identifier
+                onUrlChanged: if(rootItem.currentTab === identifier) toolBar.setUrl(url)
+                onVisibleChanged: {
+                    if(visible) {
+                        toolBar.canGoBack = Qt.binding(function(){ return page.canGoBack; })
+                        toolBar.canGoForward = Qt.binding(function(){ return page.canGoForward; })
+                        rootItem.currentWebView = page
+                        toolBar.setUrl(currentUrl)
+                    }
+                }
+                Component.onCompleted: {
+                    rootItem.currentWebView = page
+                    rootItem.currentTab = identifier
+                }
             }
         }
     }

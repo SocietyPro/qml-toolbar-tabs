@@ -126,7 +126,7 @@ ToolButton {
                         hoverEnabled: true
                         onClicked: {
                             tabViewHeader.addTab(name, launchUrl)
-                            //popup.close()
+                            dropdown.expanded = false
                         }
                     }
                 }

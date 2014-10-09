@@ -4,6 +4,7 @@ import QtQuick 2.3
 
 BorderImage {
     property alias text: input.text
+    property alias cursorPosition: input.cursorPosition
     signal accepted(string txt)
     border.left: 3
     border.right: 3
