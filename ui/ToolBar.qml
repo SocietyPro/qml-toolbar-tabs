@@ -9,6 +9,9 @@ Rectangle {
     signal reloadClicked()
     property bool canGoBack: false
     property bool canGoForward: false
+    function setRoleName(txt) {
+        roleInfo.name = txt
+    }
 
     anchors.left: parent.left
     anchors.right: parent.right
@@ -83,10 +86,9 @@ Rectangle {
             width: 10; height: 40
         }
 
-        RolesDropdown {
+        PantheonDropdown {
             anchors.verticalCenter: parent.verticalCenter
             height: 26; width: 120
-            onRoleChanged: roleInfo.name = txt
         }
 
         Item { // separator

@@ -8,8 +8,8 @@
         <file>ui/TabViewHeader.qml</file>
         <file>ui/ToolButton.qml</file>
         <file>ui/LocationBar.qml</file>
-        <file>ui/PantheonDropdown.qml</file>
         <file>ui/RolesDropdown.qml</file>
+        <file>ui/PantheonDropdown.qml</file>
         <file>ui/RoleInfo.qml</file>
         <file>ui/HomeButton.qml</file>
         <file>ui/CreationStackButton.qml</file>

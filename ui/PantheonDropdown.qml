@@ -18,20 +18,21 @@ Item {
         return true
     }
 
-    Image {
-        id: logoImage
-        anchors.verticalCenter: parent.verticalCenter
+    Rectangle {
         anchors.left: parent.left
-        anchors.leftMargin: 5
-        source: "qrc:///images/ui/pantheonLogo.png"
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        height: 1
+        color: "#AAAAAA"
     }
 
     Text {
         anchors.verticalCenter: parent.verticalCenter
-        anchors.left: logoImage.right
-        anchors.leftMargin: 5
+        anchors.left: parent.left
+        anchors.right: parent.right
         font.family: "Arial"
         font.pixelSize: 12
+        elide: Text.ElideRight
         renderType: Text.NativeRendering
         color: "#404040"
         text: qsTr("Pantheon")
@@ -70,9 +71,9 @@ Item {
         id: popupRoot
         anchors.top: dropdown.bottom
         anchors.topMargin: triangleImage.height - 3
-        x: 5
         width: dropColumn.width + 2
         height: dropColumn.height + dropColumn.heightDiff * 2 + 2
+        x: -10
         border.width: 1
         border.color: "#CCCCCC"
         color: "#FFFFFF"
@@ -80,8 +81,8 @@ Item {
 
         function containsPoint(px, py) {
             if(!visible) return false
-            if(px < 0) return false
-            if(px > width) return false
+            if(px < x) return false
+            if(px > x + width) return false
             if(py < y) return false
             if(py > y + height) return false
             return true
@@ -125,7 +126,7 @@ Item {
                         anchors.leftMargin: 24
                         renderType: Text.NativeRendering
                         font.family: "Arial"
-                        font.pixelSize: 11
+                        font.pixelSize: 12
                         color: delegateArea.containsMouse ? "#6D6D6D" : "#3F3F3F"
                         text: name
                     }

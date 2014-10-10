@@ -78,10 +78,11 @@ QuickControls.ApplicationWindow {
             }
         }
 
-        PantheonDropdown {
+        RolesDropdown {
             anchors.left: parent.left
             anchors.top: parent.top
             height: 25; width: 100; z: 2
+            onRoleChanged: toolBar.setRoleName(txt)
         }
 
         ListModel { id: tabsModel }
